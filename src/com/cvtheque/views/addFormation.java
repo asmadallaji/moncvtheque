@@ -22,7 +22,6 @@ public class addFormation extends JFrame {
 	public JTextField textField_1;
 	public JTextField textField_2;
 	public JTextField textField_3;
-	Window > Preferences > General > Editors > File Associations
 	/**
 	 * Launch the application.
 	 */

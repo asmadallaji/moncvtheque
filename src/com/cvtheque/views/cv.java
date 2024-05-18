@@ -23,6 +23,7 @@ import com.cvtheque.controller.candidatController;
 import com.cvtheque.controller.competenceController;
 import com.cvtheque.controller.experienceController;
 import com.cvtheque.controller.formationController;
+import com.cvtheque.views.CenteredRowTableCellRenderer;
 
 
 public class cv extends JFrame implements ActionListener{
@@ -60,23 +61,24 @@ public class cv extends JFrame implements ActionListener{
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		String[] headerCandidat = { "Nom", "Prénom", "Email", "Téléphone", "Adresse", "Actions"};
 		String[][] recCandidat = {
-		         { "1", "Dallaji", "Asma", "asma.dallaji@gmail.com", "58545335", "bardo","" },
+		         { "Dallaji", "Asma", "asma.dallaji@gmail.com", "58545335", "bardo","" },
 		      };
 		String[] headerFormation = { "Intitulé", "Année de debut", "Année de fin", "etablissement", "Actions"};
 		 	
 		 	String[][] recFormation = {
-			         { "1", "Ingerieur", "2023", "2025", "Polytech",""},
+			         {"Ingerieur", "2023", "2025", "Polytech",""},
 			      };
-		 	 String[] headerCompetence = {"1", "Titre", "Niveau", "Actions"};
+		 	 String[] headerCompetence = {"Titre", "Niveau", "Actions"};
 		      String[][] recCompetance = {
-				         { "1", "php", "debutant", ""},
+				         { "php", "debutant", ""},
 				      };
 			     
 		      JTable table = new JTable(recCandidat, headerCandidat);
-		      TableColumnModel test = table.getColumnModel();
-		      //test.getColumn(0).setCellRenderer(new CenteredCellRenderer());
+		      table = this.centerContent(table);
 		      JTable table2 = new JTable(recFormation, headerFormation);
+		      table2 = this.centerContent(table2);
 		      JTable table3 = new JTable(recCompetance, headerCompetence);
+		      table3 = this.centerContent(table3);
 		      contentPane.setLayout(null);
 		      JScrollPane scrollPane = new JScrollPane(table);
 		      scrollPane.setBounds(10, 179, 778, 91);
@@ -169,6 +171,16 @@ public class cv extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		
+	}
+	private JTable centerContent(JTable table) {
+		int rowIndexToCenter = 0; // Change this to the desired row index to center its content
+		int columnCount = table.getColumnCount();
+
+		// Set the custom cell renderer for each cell in the desired row
+		for (int i = 0; i < columnCount; i++) {
+		    table.getColumnModel().getColumn(i).setCellRenderer(new CenteredRowTableCellRenderer(rowIndexToCenter));
+		}
+		return table;
 	}
 
 }
